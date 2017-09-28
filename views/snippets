@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Ctake a gander at your Snippets</title>
+    <link rel='stylesheet' href="general.css"/>
+  </head>
+  <body>
+    <h2>SNeed to find a snippet?:</h2>
+    <form method='post' action:'/searchSnippetsBy'>
+      <input type="search" name=searchBy placeholder='general search'>
+      <input type="search" name=searchTerm placeholder='get specific'>
+      <button type='submit'>Search!</button>
+    </form>
+    <h1>Snippets:</h1>
+    {{#snippets}}
+    <p>{{title}}</p>
+    <hr>
+    {{/snippets}}
+    <hr>
+    <div class='links'>
+    <h4><a href='/logout'>Logout</a></h4>
+    <a href="/createASnippet"><h2>Create a Snippet all your own!</h2></a>
+    </div>
+  </body>
+</html>

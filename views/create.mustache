@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add a Snippet all by yourself!</title>
+    <link rel='stylesheet' href="general.css"/>
+  </head>
+  <body>
+    <h1>Just do it! Add a Snippet!</h1>
+    <form method="POST" action="/createASnippet">
+      <input placeholder="Snippet Title" name="title"  type="text"></input>
+      <input placeholder="Body of Snippet" name="codeBody" type="text" value="codeBody"></input>
+      <input placeholder="Language" type="text" name="language" value="language"></input>
+      <input placeholder="Notes(optional)" type="text" name="notes" value="notes"></input>
+      <input placeholder="Tag (optional)" type="text" name="tag" value="tag"></input>
+      <button type="submit">Come on! Add your Snippet!</button>
+    </form>
+
+    <div class="links">
+      <a href='/home'><h2>Cancel</h2></a>
+      <h4><a href='/home'>Go Home</a></h4>
+      <h4><a href='/index'>Index</a></h4>
+    </div>
+  </body>
+</html>
