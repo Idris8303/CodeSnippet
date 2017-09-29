@@ -5,16 +5,20 @@
     <title>Search some Snippets</title>
   </head>
   <body>
-    <h2>Need to find a Snippet?:</h2>
+    <h2>Need to find a Snippet?</h2>
     <form method='post' action:'/search'>
       <input type="text" name=searchBy placeholder=' search term'>
       <button type='submit'>Search!</button>
     </form>
-    <h1>Snippets on their way:</h1>
-    {{#search}}
+    <h1>Snippets on their way!</h1>
+    {{#searchResults}}
     <p>{{title}}</p>
+    <p>{{codeBody}}</p>
+    <p>{{language}}</p>
+    <p>{{notes}}</p>
+    <p>{{tag}}</p>
     <hr>
-    {{/search}}
+    {{/searchResults}}
     <hr>
     <div class='links'>
     <h4><a href='/logout'>Logout</a></h4>
