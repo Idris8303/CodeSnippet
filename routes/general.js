@@ -24,4 +24,13 @@ router.get('/register', (req, res) => {
   res.render('register');
 });
 
+router.get('/search', function (req, res) {
+  res.render('search');
+});
+
+router.get('/create', function (req, res) {
+  res.render('create');
+});
+
+
 module.exports = router;

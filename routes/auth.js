@@ -48,8 +48,8 @@ router.get('/register', (req, res, next) =>{
 
 router.post('/register', (req, res, next) => {
 
-  req.checkBody('username', 'Username is required').notEmpty();
-  req.checkBody('password', 'Password is required').notEmpty();
+  req.checkBody('username', 'Username  required').notEmpty();
+  req.checkBody('password', 'Password  required').notEmpty();
 
   req.getValidationResult()
     .then(function(result){
@@ -84,7 +84,6 @@ router.post('/register', (req, res, next) => {
   }, passport.authenticate('local', {
     successRedirect : '/home',
 }));
-
 
 router.get('/logout', (req, res) => {
   req.logout();
