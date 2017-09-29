@@ -9,10 +9,10 @@ router.get('/login', (req, res) =>{
   const flashMessages = res.locals.getMessages();
   console.log('flash messages', flashMessages);
 
-  if(flashMessages.error){
+  if(flashMessages.err){
     res.render('login', {
       showErrors : true,
-      errors : flashMessages.error
+      errors : flashMessages.err
     })
   } else {
 
@@ -32,10 +32,10 @@ router.get('/register', (req, res, next) =>{
   const flashMessages = res.locals.getMessages();
   console.log('flash messages', flashMessages);
 
-  if (flashMessages.error) {
+  if (flashMessages.err) {
     res.render('register', {
       showErrors: true,
-      errors: flashMessages.error
+      errors: flashMessages.err
     })
   }
   else {
@@ -46,7 +46,7 @@ router.get('/register', (req, res, next) =>{
 
 
 
-router.post('/register', (req, res) => {
+router.post('/register', (req, res, next) => {
 
   req.checkBody('username', 'Username is required').notEmpty();
   req.checkBody('password', 'Password is required').notEmpty();
@@ -54,25 +54,29 @@ router.post('/register', (req, res) => {
   req.getValidationResult()
     .then(function(result){
       if (result.isEmpty() === false) {
-        result.array().forEach((error) => {
-          req.flash('error', error.msg);
+        result.array().forEach((err) => {
+          req.flash('error', err.msg);
         })
+        console.log('redirecting to register');
         res.redirect('/register');
       }
       else {
-        console.log('hi im the auth.js', req.body);
+        console.log('hi', req.body);
         const user = new User ({ username : req.body.username, password : req.body.password});
         user.save((err) => {
           if (err) {
-            if (error.message.indexOf('duplicate key error') > -1){
+            if (err.message.indexOf('duplicate error') > -1){
               req.flash('Username already in use');
             } else {
               req.flash('there was a problem.');
             }
+            console.log('redirecting to reg on post');
             res.redirect('/register');
           } else {
-              passport.authenticate('local', {
-              successRedirect : '/home',});
+            console.log('hey I am here!');
+            next()
+
+
         }
       });
     }
@@ -85,10 +89,6 @@ router.post('/register', (req, res) => {
 router.get('/logout', (req, res) => {
   req.logout();
   res.redirect('/login');
-})
-
-router.get('/help', (req, res) => {
-  res.render('help');
 })
 
 module.exports = router;

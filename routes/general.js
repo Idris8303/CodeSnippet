@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 
-router.get('/index', (req, res) => {
+router.get('/', (req, res) => {
   res.render('index');
 });
 
@@ -9,7 +9,7 @@ function authRequired(req, res, next){
   if(req.user) {
     next();
   } else {
-    res.redirect('./login');
+    res.redirect('/login');
   }
 }
 

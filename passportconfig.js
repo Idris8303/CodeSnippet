@@ -10,6 +10,7 @@ function configure(passport) {
       done(err);
     } else if (user) {
       console.log('We have a User!');
+      done(null,user);
     } else {
       console.log('There was like, no user or whatever')
       done(null, false, {

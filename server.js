@@ -22,7 +22,7 @@ app.use(expressValidator());
 
 
 app.use(session({
-  secret : 'Aflabajabawikiwoo!',
+  secret : 'Alons-y',
   resave : false,
   saveUninitialized: false
 }))
@@ -46,6 +46,6 @@ let url = 'mongodb://localhost:27017/CodeSnipet';
 mongoose.connect(url, { useMongoClient: true }).then(function(){console.log("Yay!")});
 
 
-app.listen(3003, function(){
-  console.log('listening on port 3003');
+app.listen(3001, function(){
+  console.log('listening on port 3001');
 })
