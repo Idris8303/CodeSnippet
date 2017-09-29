@@ -13,11 +13,11 @@ const snippetSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  tag: {
+  notes: {
     type: String,
     required: false
-  }
-  notes: {
+  },
+  tag: {
     type: String,
     required: false
   }
@@ -25,4 +25,4 @@ const snippetSchema = new mongoose.Schema({
 
 const Snippet = mongoose.model('Snippet', snippetSchema);
 
-module.exports = snippet;
+module.exports = Snippet;
