@@ -53,6 +53,7 @@ router.get('/create', function (req, res) {
 });
 router.post('/create', (req, res) => {
   const snippet = new Snippet ({
+    //possibly using underscore and adding id here//
     title: req.body.title,
     codeBody: req.body.codeBody,
     language: req.body.language,
@@ -66,6 +67,17 @@ router.post('/create', (req, res) => {
     }
   });
   res.redirect('create');
+});
+
+router.get('/snippets', (req, res) => {
+  console.log(req.user);
+  Snippet
+    .find({})
+    .then((codeSnippets) => {
+      res.render('snippets', {
+        codeSnippets
+      });
+    });
 });
 
 
