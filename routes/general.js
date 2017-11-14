@@ -53,7 +53,6 @@ router.get('/create', function (req, res) {
 });
 router.post('/create', (req, res) => {
   const snippet = new Snippet ({
-    //possibly using underscore and adding id here//
     title: req.body.title,
     codeBody: req.body.codeBody,
     language: req.body.language,
@@ -69,7 +68,14 @@ router.post('/create', (req, res) => {
   res.redirect('create');
 });
 
-router.get('/snippets', (req, res) => {
+app.get('/snippets/:snippetId', function (req, res) {
+  // create snippet mustache template
+  // get the snppet with id == snippetId
+  // and render it in the snippet mustache template
+  res.send(req.params.snippetId)
+})
+
+router.get('/snippets/', (req, res) => {
   console.log(req.user);
   Snippet
     .find({})
