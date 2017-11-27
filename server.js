@@ -41,6 +41,7 @@ app.use(require('./routes/general'));
 app.use(require('./routes/auth'))
 
 
+
 let url = 'mongodb://localhost:27017/CodeSnipet';
 
 mongoose.connect(url, { useMongoClient: true }).then(function(){console.log("Yay!")});

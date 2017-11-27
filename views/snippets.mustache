@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>View Snippets</title>
+  </head>
+  <body>
+    <title>View Snippets</title>
+    <h1>Welcome {{username}}</h1>
+    <h1>These are your Code Snippets</h1>
+    {{#snippets}}
+    <a href="/snippets/{{_id}}">{{title}}</a>
+    <hr>
+    {{/snippets}}
+    </hr>
+    <div class='links'>
+      <h4><a href='/logout'>Logout</a></h4>
+      <h4><a href="/create">Add your Snippet</a></h4>
+      <a href='/home'><h2>Cancel</h2></a>
+      <h4><a href='/home'>Go Home</a></h4>
+      <h4><a href='/'>Index</a></h4>
+    </div>
+  </body>
+</html>

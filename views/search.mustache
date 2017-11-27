@@ -11,18 +11,12 @@
       <button type='submit'>Search!</button>
     </form>
     <h1>Snippets on their way!</h1>
-    {{#searchResults}}
-    <p>{{title}}</p>
-    <p>{{codeBody}}</p>
-    <p>{{language}}</p>
-    <p>{{notes}}</p>
-    <p>{{tag}}</p>
-    <hr>
-    {{/searchResults}}
-    <hr>
+    
+    {{title}}
+
     <div class='links'>
-    <h4><a href='/logout'>Logout</a></h4>
-    <a href="/create"><h2>Create a Snippet all your own!</h2></a>
+      <h4><a href='/logout'>Logout</a></h4>
+      <a href="/create"><h2>Create a Snippet all your own!</h2></a>
     </div>
   </body>
 </html>

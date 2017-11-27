@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const bodyParser = require('body-parser');
 const Snippet = require('../models/snippet');
 
 router.get('/', (req, res) => {
@@ -24,33 +25,34 @@ router.get('/register', (req, res) => {
   res.render('register');
 });
 
-router.get('/search', function (req, res) {
+router.get('/search', (req, res) => {
   res.render('search');
 });
 
-router.post('/search', (req, res) => {
+router.post('/search/:searchBy?/:searchTerm?', (req, res) => {
+  let searchBy = req.params.searchBy;
+  let searchTerm = req.params.searchTerm;
+  let object = {};
 
-    let searchBy = req.params.searchBy;
-    let searchTerm = req.params.searchTerm;
-    let object = {};
-    if (searchBy && searchTerm) {
-      object[searchBy] = searchTerm;
-    }
+  if (searchBy && searchTerm) {
+    object[searchBy] = searchTerm;
+  }
+
   Snippet.find(object, (err, snippets) => {
     if(err) {
-      req.flash('Sorry.There was a problem saving.');
+      req.flash('there was a problem in saving your snippet.');
     } else {
-
-      console.log(snippets);
-    res.render('search',{searchResults: snippets})
+      let data = {snippets};
+      console.log(data);
+      res.render('snippets', data)
     }
   })
 });
 
-
 router.get('/create', function (req, res) {
   res.render('create');
 });
+
 router.post('/create', (req, res) => {
   const snippet = new Snippet ({
     title: req.body.title,
@@ -59,14 +61,46 @@ router.post('/create', (req, res) => {
     notes: req.body.notes,
     tag: req.body.tag
   });
+
   console.log('create a snippet!',req.body.title);
   snippet.save((err) => {
     if(err) {
       req.flash('Sorry.There was a problem saving.');
     }
   });
+
   res.redirect('create');
 });
+
+router.get('/snippets/:snippetId', function (req, res) {
+  // create snippet.mustache template
+  // get the snippet from MongoDB using Snippet.findById with snippetId
+  // and render it in the snippet mustache template
+  res.send(req.params.snippetId)
+})
+
+router.get('/snippets/', (req, res) => {
+  console.log(req.user);
+  Snippet
+    .find({})
+    .then((snippets) => {
+      res.render('snippets', {
+        snippets
+      });
+    });
+});
+
+router.get('/findASnippetbyTitle', (req, res) => {
+  let findByTitle = Snippet.find(findSnippetByTitle, searchQuery);
+  console.log(JSON.stringify(findByTitle));
+
+  function findSnippetByTitle (findByTitle) {
+      if (`findByTitle.${searchQuery}` === `req.body.${searchQuery}`) {
+        let returnedSnippet = {snippets};
+        res.render('snippets', returnedSnippet);
+      }
+    }
+})
 
 
 module.exports = router;
